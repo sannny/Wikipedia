@@ -1,0 +1,23 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+     NEW ENTRY
+{% endblock %}
+
+{% block body %}            
+    <h4>Please Write the content following the markdown language scheme</h4>
+    <a href="https://docs.github.com/en/free-pro-team@latest/github/writing-on-github/basic-writing-and-formatting-syntax"> GuideLines to markdown</a>
+    {% if page_req %}
+        <form action= "{% url 'New_Page' %}" method="post">
+            {% csrf_token %}
+    {% else %}
+        <form action= "/wiki/edit_entry/{{entry}}" method="post">
+            {% csrf_token %}
+    {% endif%}
+            {{form}}
+            <div>
+                <input type = "submit">
+            </div>
+        </form>
+   
+{% endblock %}
